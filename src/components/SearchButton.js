@@ -1,11 +1,11 @@
 import React from 'react'
-import { Form, Button, Container, Row, Col } from 'react-bootstrap'
+import { Form, Button, Row, Col } from 'react-bootstrap'
 
 const SearchButton = () => {
     return (
         <Form>
             <Row>
-                <Col xs={3}>
+                <Col>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Control placeholder="Search query" />
                     </Form.Group>
