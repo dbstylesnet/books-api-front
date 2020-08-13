@@ -7,10 +7,10 @@ const Books = ({ books, loading }) => {
 
     return <Row className='justify-content-center d-flex'>
         <ul className="list-group mb-4">
-            {books.length > 0 ?
-                Object.values(books[0])[0].map(book => (
-                    <Col className='p-3 mb-1'>
-                        <li key={book.id} className="list-group-item">
+            {books.length > 0 && !loading ?
+                Object.values(books).map(book => (
+                    <Col key={book.id} className='p-3 mb-1'>
+                        <li className="list-group-item">
                             <span className='font-weight-bold'>{book.book_title}</span><br />
                             by <span className='font-italic'>{book.book_author}</span><br />
                             year: {book.book_publication_year}, {book.book_publication_city} {book.book_publication_city}<br />

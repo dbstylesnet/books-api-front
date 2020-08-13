@@ -1,19 +1,17 @@
 import React from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 
-const SearchButton = () => {
+const SearchButton = ({ onQuerySubmit, queried, onQueryChange }) => {
     return (
-        <Form>
+        <Form>  
             <Row>
-                <Col>
+                <Col xs={9}>
                     <Form.Group controlId="formBasicEmail">
-                        <Form.Control placeholder="Search query" />
+                        <Form.Control placeholder="Search query" value={queried} onChange={onQueryChange} />
                     </Form.Group>
                 </Col>
-                <Col>
-                    <Button type="submit">
-                        Submit
-                   </Button>
+                <Col xs={3}>
+                    <Button onClick={onQuerySubmit}>Send</Button>
                 </Col>
             </Row>
         </Form>
