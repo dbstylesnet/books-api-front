@@ -31,7 +31,7 @@ const BooksView = () => {
             <Row xs={12}>
                 <Col>
                     <Jumbotron>
-                        <h1 className="header">Books Front</h1>
+                        <h1 className="header">Books API FrontEnd</h1>
                     </Jumbotron>
                 </Col>
             </Row>
@@ -40,11 +40,7 @@ const BooksView = () => {
                     <SearchButton />
                 </Col>
             </Row>
-            <Row>
-                <Col>
-                    <Books loading={loading} books={books} />
-                </Col>
-            </Row>
+            <Books loading={loading} books={books} />
         </Container>
     )
 }
