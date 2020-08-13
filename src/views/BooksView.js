@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react'
 import '../styles/Books.scss'
 import SearchButton from '../components/SearchButton'
 import { Jumbotron, Container, Row, Col } from 'react-bootstrap'
+import Books from '../components/Books'
 import axios from 'axios'
 
-const Books = () => {
-    const [posts, setPosts] = useState([])
+const BooksView = () => {
+    const [books, setBooks] = useState([])
     const [postParams, setPostParams] = useState({
         page: 1,
         itemsPerPage: 20,
-        filters: [],
+        filters: [{ type: "all", values: [""] }],
     })
     const [loading, setLoading] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
@@ -17,16 +18,13 @@ const Books = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             setLoading(true)
-            const res = await axios.post('http://nyx.vima.ekt.gr:3000/api/books', { postParams })
-            console.log(postParams)
-            setPosts(res.data)
+            const res = await axios.post('http://nyx.vima.ekt.gr:3000/api/books', postParams)
+            setBooks([...books, res.data])
             setLoading(false)
         }
 
         fetchPosts()
     }, [postParams])
-
-    console.log(posts)
 
     return (
         <Container className="p-3">
@@ -44,11 +42,11 @@ const Books = () => {
             </Row>
             <Row>
                 <Col>
-                
+                    <Books loading={loading} books={books} />
                 </Col>
             </Row>
         </Container>
     )
 }
 
-export default Books
+export default BooksView
