@@ -1,7 +1,7 @@
 # Books API Front-end
-Application consumes provided Rest API which serves sets of Books.
-API accepts: page, itemsPerPage and filters parameters (search query).
-Features router-dom's history and allows user to query results from url: /?p={page_number}. 
+Application consumes provided Rest API which serves sets of Books.  
+API accepts: page, itemsPerPage and filters parameters (search query). 
+Features router-dom's history and allows user to query results from url: /?p={page_number}.  
 
 ## Tech stack
 * React (hooks)
