@@ -8,7 +8,7 @@ Features router-dom's history and allows user to query results from url: /?p={pa
 * Rest API
 * React-bootstrap
 
-![Screenshot showing project](https://github.com/dbstylesnet/books-front-api/blob/main-functionality/screenshot.png)
+![Screenshot showing project](https://github.com/dbstylesnet/books-api-front/blob/main-functionality/screenshot.png)
 
 ## In order to start project locally:
 
