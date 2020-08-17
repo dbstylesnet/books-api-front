@@ -5,12 +5,13 @@ import { Container } from 'react-bootstrap'
 import Books from '../components/Books'
 import Header from '../components/Header'
 import PaginationButtons from '../components/PaginationButtons'
+import PaginationBar from '../components/PaginationBar'
 import axios from 'axios'
 
 const BooksPage = ({ history, location }) => {
-    const pageQuery = parseInt(location.search.replace(/[^0-9]/g, '')) || 1
-
+    const [pageQuery] = useState(parseInt(location.search.replace(/[^0-9]/g, '')) || 1)
     const [books, setBooks] = useState([])
+    const [booksCount, setBooksCount] = useState(1)
     const [loading, setLoading] = useState(true)
     const [queried, setQueried] = useState('')
     const [postParams, setPostParams] = useState({
@@ -24,6 +25,7 @@ const BooksPage = ({ history, location }) => {
             setLoading(true)
             const res = await axios.post('http://nyx.vima.ekt.gr:3000/api/books', postParams)
             setBooks(res.data.books)
+            setBooksCount(res.data.count) 
             setLoading(false)
         }
 
@@ -63,6 +65,15 @@ const BooksPage = ({ history, location }) => {
         })
     }
 
+    const onPageClick = pageNumber => {
+        history.push(`/?p=${pageNumber}`)
+        setPostParams({
+            page: pageNumber,
+            itemsPerPage: postParams.itemsPerPage,
+            filters: [{ type: 'all', values: [queried] }],
+        })
+    }
+
     const disabledPrev = postParams.page <= 1 ? true : false
     const disabledNext = books.length < postParams.itemsPerPage ? true : false
 
@@ -80,6 +91,12 @@ const BooksPage = ({ history, location }) => {
                 onNextClick={onNextClick} 
                 onPrevClick={onPrevClick} />
 
+            <PaginationBar
+                itemsPerPage={postParams.itemsPerPage}
+                currentPage={postParams.page}
+                booksCount={booksCount} 
+                onPageClick={onPageClick} />
+                
             <Books 
                 loading={loading} 
                 books={books} />
