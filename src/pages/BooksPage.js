@@ -23,13 +23,16 @@ const BooksPage = ({ history, location }) => {
     useEffect(() => {
         const fetchPosts = async () => {
             setLoading(true)
-            const res = await axios.post('http://nyx.vima.ekt.gr:3000/api/books', postParams)
-            setBooks(res.data.books)
-            setBooksCount(res.data.count) 
+            axios.post('http://nyx.vima.ekt.gr:3000/api/books', postParams)
+                .then(response => {
+                    setBooks(response.data.books)
+                    setBooksCount(response.data.count)
+                })
+                .catch(error => console.error)
             setLoading(false)
         }
 
-        fetchPosts()
+       fetchPosts()
     }, [postParams])
 
     const onQueryChange = (e) => {
