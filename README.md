@@ -1,4 +1,4 @@
-# Books API Front-end
+# Library Front-end
 Application consumes provided Rest API which serves sets of Books.  
 API accepts: page, itemsPerPage and filters parameters (search query).  
 Features router-dom's history and allows user to query results from url: /?p={page_number}.  
